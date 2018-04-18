@@ -2,25 +2,45 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/styles.css">
-  <title>Pomadorable</title>
-  <script src="js/animate.js" type="text/javascript"></script>
+	<meta charset="UTF-8">
+	<title>Pomadorable</title>
+	<meta name="description" content="A productivity timer offering a modern implementation of Francesco Cirillo's classic Pomodoro method.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="js/animate.js" type="text/javascript"></script>
 </head>
 
 <body>
 
-	<div class="wrapper">
+	<div class="container">
+
+		<header>
+			<h1>Pomadorable</h1>
+		</header>
 
 		<div class="main">
 
-			<h1>testing site</h1>
-			<p>more testing</p>
+			<section class="clock">
+				
+				<span class="start">
+					<i class="fa fa-hourglass"></i>
+				</span>
+
+				<span class="time"><p id="demo"></p></span>
+
+	            <span class="restart">
+	        		<i class="fa fa-repeat"></i>
+	        	</span>
+
+			</section>
 
 		</div>
 
 	</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 </html>
