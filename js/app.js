@@ -123,11 +123,16 @@ var pomodoro = {
 
     // set up clock element and associated buttons
     this.countdownDisplay   = document.getElementById( "countdown" );
+
     this.typeDisplay        = document.getElementById( "type" );
-    this.resetCountdownBtn  = document.getElementById( "reset-pom" );    
-    this.stopCountdownBtn   = document.getElementById( "stop-pom" ); 
+
     this.startCountdownBtn  = document.getElementById( "start-pom" );
-    this.countdownContainer = document.getElementById( "countdown-container" );        
+    this.stopCountdownBtn   = document.getElementById( "stop-pom" ); 
+    this.resetCountdownBtn  = document.getElementById( "reset-pom" );    
+
+    this.countdownContainer = document.getElementById( "countdown-container" );
+
+    // this.keyPress         = document.addEventListener( "keydown", 32 );        
   
   }, 
 
@@ -146,7 +151,7 @@ var pomodoro = {
     this.timePaused = false;
     this.timeStopped = false;
 
-    // Request permission 
+    // request permission 
 
   },
 
@@ -160,9 +165,12 @@ var pomodoro = {
 
     // bind start date to #countdown and countdown buttons
     this.countdownDisplay.onclick  = pomodoro.startCountdown;
-    this.resetCountdownBtn.onclick = pomodoro.resetCountdown;
-    this.stopCountdownBtn.onclick  = pomodoro.stopCountdown;
     this.startCountdownBtn.onclick = pomodoro.startCountdown;
+    this.stopCountdownBtn.onclick  = pomodoro.stopCountdown;
+    this.resetCountdownBtn.onclick = pomodoro.resetCountdown;
+    
+    // add option to use spacebar instead of buttons
+    // this.keyPress = pomodoro.startCountdown;
 
   },
 
@@ -221,7 +229,7 @@ var pomodoro = {
 
   },
 
-  // Reset variables to initial values
+  // reset variables to initial values
   resetVariables: function() {
 
     pomodoro.timeinterval = false;
@@ -238,6 +246,15 @@ var pomodoro = {
 
     // toggle typeDisplay and background color between work and break
     pomodoro.displayType();
+
+    // note that timer is not stopped
+    pomodoro.timeStopped = false;
+
+    // when timer is not stopped, unhide the "stop" button
+    pomodoro.stopCountdownBtn.style.display = "";
+
+    // when timer is not stopped, unhide the "refresh" button
+    pomodoro.resetCountdownBtn.style.display = "";
 
     // pause pomodoro if countdown is currently running, 
     // otherwise start countdown
@@ -267,9 +284,6 @@ var pomodoro = {
       // and updates #countdown display
       pomodoro.timeinterval = setInterval(pomodoro.updateCountdown,990); 
     }
-
-    // when timer is running, set start button to read "pause"
-    // pomodoro.startCountdownBtn.innerHTML = "pause"; 
      
   },
 
@@ -340,12 +354,7 @@ var pomodoro = {
 	// when timer is paused, set start button to read "resume"
     if ( pomodoro.timePaused === true ) {
     	pomodoro.startCountdownBtn.innerHTML = "resume";
-    } // else if ( pomodoro.timePaused === false ) {
-    	// pomodoro.startCountdownBtn.innerHTML = "pause";
-    // }
-
-    // when timer is paused, set start button to read "resume"
-    // pomodoro.startCountdownBtn.innerHTML = "resume";  
+    } 
 
   },
 
@@ -357,14 +366,8 @@ var pomodoro = {
     	pomodoro.endTime = pomodoro.startTime + ( pomodoro.breakLength * 60000 );      
     } 
 
+	// when timer is running, set start button to read "pause"
     pomodoro.startCountdownBtn.innerHTML = "pause";
-
-    // when timer is running, set start button to read "pause"
-    // if ( pomodoro.timePaused === false ) {
-    	// pomodoro.startCountdownBtn.innerHTML = "pause";
-    // } else if ( pomodoro.timePaused === true ) {
-    	// pomodoro.startCountdownBtn.innerHTML = "resume";
-    // }
     
   },
 
@@ -383,6 +386,7 @@ var pomodoro = {
 
     // stop timer
     clearInterval( pomodoro.timeinterval );
+    pomodoro.timeStopped = true;
 
     // change HTML
     pomodoro.updateAllDisplays();
@@ -391,6 +395,15 @@ var pomodoro = {
     pomodoro.resetVariables();
 
     pomodoro.unDisableButtons();
+
+    // when timer is stopped, set start button to read "start" again
+    pomodoro.startCountdownBtn.innerHTML = "start";
+
+	// when timer is stopped, hide the "stop" button
+    pomodoro.stopCountdownBtn.style.display = "none";
+	
+	// when timer is stopped, hide the "refresh" button
+    pomodoro.resetCountdownBtn.style.display = "none";
 
   },
 
