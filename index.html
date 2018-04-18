@@ -8,7 +8,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/styles.css">
-	<script src="js/animate.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -19,8 +18,42 @@
 			<h1>Pomadorable</h1>
 		</header>
 
-		<div class="main">
+		<div class="container">
 
+			<div class="toggle-button-container" id="pomlength-container">
+      			<header>work session length</header>
+      			<time id="pom-length"></time>
+      			<div class="toggle-button-container__sub-container"></div>
+      			<button class="toggle-timer" type="button" id="decrease-pom">-</button>
+        		<button class="toggle-timer" type="button" id="increase-pom">+</button>
+    		</div>
+    
+    		<div class="toggle-button-container" id="breaklength-container">
+      			<header>break length</header>
+      			<time id="break-length"></time>
+      			<div class="toggle-button-container__sub-container"></div>
+        		<button class="toggle-timer" type="button" id="decrease-break">-</button>
+        		<button class="toggle-timer" type="button" id="increase-break">+</button>
+      		</div>
+    
+    	</div>
+
+    	<div id="countdown-container">
+      		<header id="type">work session</header>
+      		<time id="countdown"></time>
+    	</div>
+    
+    	<div id="button-container">
+      		<button type="button" id="start-pom">Start / Pause</button>
+      		<button type="button" id="stop-pom">Stop and Reset</button>
+      		<button type="button" id="reset-pom">Restart</button>
+    	</div>
+
+  	</div>
+			
+
+
+			<!--
 			<section class="clock-display">
 				
 				<span class="start">
@@ -53,15 +86,13 @@
 
 			</section>
 
-			<!--
+			
 			<section class="stats">
 
 				<p>You've completed XX pomodoros, or <span class="days"></span> days, <span class="hours"></span> hours, and <span class="minutes"></span> minutes of concentration.</p>
 
 			</section>
 			-->
-
-		</div>
 
 	</div>
 
