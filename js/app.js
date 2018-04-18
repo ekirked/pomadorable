@@ -400,6 +400,9 @@ var pomodoro = {
 
     // restart variables
     pomodoro.startCountdown();
+
+    // make sure pomeranian image is hidden
+    pomodoro.hidePup();
    
   },
 
@@ -411,6 +414,9 @@ var pomodoro = {
 
     // change HTML
     pomodoro.updateAllDisplays();
+
+    // make sure pomeranian image is hidden
+    pomodoro.hidePup();
 
     // reset Variables
     pomodoro.resetVariables();
