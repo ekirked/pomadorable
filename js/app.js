@@ -134,12 +134,12 @@ var pomodoro = {
   timerVariables: function() {
 
     // set default Length values (in minutes)
-    this.pomLength =  25;
-    this.breakLength   =  5;   
+    this.pomLength =  1;
+    this.breakLength   =  1;   
 
     // define the variable that includes the setinterval method;
-    // If the clock is counting down, the value will be true, and 
-    // the counter will be stopped on click. 
+    // if the clock is counting down, the value will be true, and 
+    // the counter will be stopped on click
     this.timeinterval = false;
     this.workSession = true;
     this.pausedTime = 0;
@@ -169,7 +169,7 @@ var pomodoro = {
   updateAllDisplays: function() {
 
     // Change HTML of displays to reflect current values
-    pomodoro.pomLengthDisplay.innerHTML = this.pomLength;
+    pomodoro.pomLengthDisplay.innerHTML     = this.pomLength;
     pomodoro.breakLengthDisplay.innerHTML   = this.breakLength;
     pomodoro.countdownDisplay.innerHTML     = this.pomLength + ":00";
 
@@ -235,31 +235,41 @@ var pomodoro = {
   startCountdown: function() {
 
     pomodoro.disableButtons();
-    // Toggle typeDisplay and background color between work and break
+
+    // toggle typeDisplay and background color between work and break
     pomodoro.displayType();
 
-    // Pause pomodoro if countdown is currently running, otherwise start
-    // countdown
+    // pause pomodoro if countdown is currently running, 
+    // otherwise start countdown
     if ( pomodoro.timeinterval !== false ) {
       pomodoro.pauseCountdown();
     } else {
-      // Set start and end time with system time and convert to 
-      // miliseconds to correctly meassure time ellapsed
+
+      // set start and end time with system time  
+      // and convert to ms to correctly meassure time ellapsed
       pomodoro.startTime = new Date().getTime();
 
-      // Check if pomodoro has just been unpaused
+      // check if pomodoro has just been unpaused
       if ( pomodoro.timePaused === false ) {
         pomodoro.unPauseCountdown();
       } else {
+      	// take into account saved paused time
         pomodoro.endTime = pomodoro.startTime + pomodoro.pausedTime;
         pomodoro.timePaused = false;
+
+        // when timer is running, set start button to read "pause"
+        pomodoro.startCountdownBtn.innerHTML = "pause";
+
       }  
 
-      // Run updateCountdown every 990ms to avoid lag with 1000ms,
-      // Update countdown checks time against system time and updates
-      // #countdown display
+      // run updateCountdown every 990ms to avoid lag with 1000ms;
+      // update countdown checks time against system time 
+      // and updates #countdown display
       pomodoro.timeinterval = setInterval(pomodoro.updateCountdown,990); 
     }
+
+    // when timer is running, set start button to read "pause"
+    // pomodoro.startCountdownBtn.innerHTML = "pause"; 
      
   },
 
@@ -289,69 +299,95 @@ var pomodoro = {
 
   changeSessions: function() {
 
-    // Stop countdown
+    // stop countdown
     clearInterval( pomodoro.timeinterval );
 
     pomodoro.playSound();
 
-    // Toggle between workSession being active or not
-    // This determines if break session or work session is displayed
+    // toggle between workSession being active or not;
+    // this determines if break session or work session is displayed
     if ( pomodoro.workSession === true ) {
       pomodoro.workSession = false;
     } else {
       pomodoro.workSession = true;
     }
 
-    // Stop countdown
+    // stop countdown
     pomodoro.timeinterval = false;
-    // Restart, with workSession changed
+
+    // restart, with workSession changed
     pomodoro.startCountdown();
 
   },
 
   pauseCountdown: function() {
 
-        // Save paused time to restart clock at correct time
-        var currTime = new Date().getTime();
-        pomodoro.pausedTime = pomodoro.endTime - currTime;
-        pomodoro.timePaused = true;      
+  	pomodoro.startCountdownBtn.innerHTML = "pause";
 
-        // Stop the countdown on second click    
-        clearInterval( pomodoro.timeinterval );    
+    // save paused time to restart clock at correct time
+    var currTime = new Date().getTime();
+    pomodoro.pausedTime = pomodoro.endTime - currTime;
+    
+    // note that timer is paused
+    pomodoro.timePaused = true;      
+
+    // stop the countdown on second click    
+    clearInterval( pomodoro.timeinterval );    
        
+    // reset variable so that counter will start again on click
+    pomodoro.timeinterval = false;
 
-        // Reset variable so that counter will start again on click
-        pomodoro.timeinterval = false;
+	// when timer is paused, set start button to read "resume"
+    if ( pomodoro.timePaused === true ) {
+    	pomodoro.startCountdownBtn.innerHTML = "resume";
+    } // else if ( pomodoro.timePaused === false ) {
+    	// pomodoro.startCountdownBtn.innerHTML = "pause";
+    // }
+
+    // when timer is paused, set start button to read "resume"
+    // pomodoro.startCountdownBtn.innerHTML = "resume";  
+
   },
 
   unPauseCountdown: function() {
+
     if ( pomodoro.workSession === true ) {
-      pomodoro.endTime = pomodoro.startTime + ( pomodoro.pomLength * 60000 );
+    	pomodoro.endTime = pomodoro.startTime + ( pomodoro.pomLength * 60000 );
     } else {
-      pomodoro.endTime = pomodoro.startTime + ( pomodoro.breakLength * 60000 );      
-    }  
+    	pomodoro.endTime = pomodoro.startTime + ( pomodoro.breakLength * 60000 );      
+    } 
+
+    pomodoro.startCountdownBtn.innerHTML = "pause";
+
+    // when timer is running, set start button to read "pause"
+    // if ( pomodoro.timePaused === false ) {
+    	// pomodoro.startCountdownBtn.innerHTML = "pause";
+    // } else if ( pomodoro.timePaused === true ) {
+    	// pomodoro.startCountdownBtn.innerHTML = "resume";
+    // }
+    
   },
 
   resetCountdown: function(){
 
-    // Stop clock and reset variables
+    // stop clock and reset variables
     clearInterval( pomodoro.timeinterval );
     pomodoro.resetVariables();
 
-    // Restart variables
+    // restart variables
     pomodoro.startCountdown();
    
   },
 
   stopCountdown: function() {
 
-    // Stop timer
+    // stop timer
     clearInterval( pomodoro.timeinterval );
 
-    // Change HTML
+    // change HTML
     pomodoro.updateAllDisplays();
 
-    // Reset Variables
+    // reset Variables
     pomodoro.resetVariables();
 
     pomodoro.unDisableButtons();
@@ -359,8 +395,10 @@ var pomodoro = {
   },
 
   displayType: function() {
-    // Check what session is running and change appearance and text above
-    // countdown depending on session (break or work)
+
+    // check what session is running; 
+    // change appearance and text above countdown
+    // depending on session (break or work)
     if ( pomodoro.workSession === true ) {
       pomodoro.typeDisplay.innerHTML = "work session";
       pomodoro.countdownContainer.className = pomodoro.countdownContainer.className.replace( "break", "" );
