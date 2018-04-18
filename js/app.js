@@ -127,8 +127,9 @@ var pomodoro = {
     this.typeDisplay        = document.getElementById( "type" );
 
     this.startCountdownBtn  = document.getElementById( "start-pom" );
+    this.resetCountdownBtn  = document.getElementById( "refresh-pom" ); 
     this.stopCountdownBtn   = document.getElementById( "stop-pom" ); 
-    this.resetCountdownBtn  = document.getElementById( "reset-pom" );    
+    this.skipPomBtn         = document.getElementById( "skip-pom" ); 
 
     this.countdownContainer = document.getElementById( "countdown-container" );
 
@@ -166,8 +167,9 @@ var pomodoro = {
     // bind start date to #countdown and countdown buttons
     this.countdownDisplay.onclick  = pomodoro.startCountdown;
     this.startCountdownBtn.onclick = pomodoro.startCountdown;
-    this.stopCountdownBtn.onclick  = pomodoro.stopCountdown;
     this.resetCountdownBtn.onclick = pomodoro.resetCountdown;
+    this.stopCountdownBtn.onclick  = pomodoro.stopCountdown;
+    this.skipPomBtn.onclick        = pomodoro.skipPom;
     
     // add option to use spacebar instead of buttons
     // this.keyPress = pomodoro.startCountdown;
@@ -192,6 +194,9 @@ var pomodoro = {
     }
     
   },
+
+
+  // SET UP FUNCTIONALITY TO INCREASE OR DECREASE LENGTHS OF SESSIONS
 
   incrPom: function() {
 
@@ -228,6 +233,9 @@ var pomodoro = {
     }    
 
   },
+
+
+  // SET UP TIMER FUNCTIONALITY
 
   // reset variables to initial values
   resetVariables: function() {
@@ -421,6 +429,13 @@ var pomodoro = {
         pomodoro.countdownContainer.className += "break";
       }
     }   
+
+  },
+
+  skipPom: function() {
+
+  	// change to break session
+  	pomodoro.changeSessions();
 
   },
 
