@@ -103,6 +103,8 @@ var pomodoro = {
     this.bindEvents();
     this.updateAllDisplays();
     this.requestNotification();
+    this.hidePup();
+
   },
 
   // Define notifications to be used by Pomodoro
@@ -112,13 +114,13 @@ var pomodoro = {
 
     // set up buttons to adjust timer
     this.toggleTimerBtns = document.getElementsByClassName( "toggle-timer" );
-    this.increasePom = document.getElementById( "increase-pom" );
-    this.decreasePom = document.getElementById( "decrease-pom" );
+    this.increasePom     = document.getElementById( "increase-pom" );
+    this.decreasePom     = document.getElementById( "decrease-pom" );
     this.increaseBreak   = document.getElementById( "increase-break" );
     this.decreaseBreak   = document.getElementById( "decrease-break" );
 
     // set up display of timer lengths
-    this.pomLengthDisplay = document.getElementById( "pom-length" );
+    this.pomLengthDisplay     = document.getElementById( "pom-length" );
     this.breakLengthDisplay   = document.getElementById( "break-length" );
 
     // set up clock element and associated buttons
@@ -132,6 +134,8 @@ var pomodoro = {
     this.skipPomBtn         = document.getElementById( "skip-pom" ); 
 
     this.countdownContainer = document.getElementById( "countdown-container" );
+
+    this.pupImage = document.getElementById( "pup-image" );
 
     // this.keyPress         = document.addEventListener( "keydown", 32 );        
   
@@ -324,6 +328,7 @@ var pomodoro = {
     // stop countdown
     clearInterval( pomodoro.timeinterval );
 
+    // when either session ends, play sound
     pomodoro.playSound();
 
     // toggle between workSession being active or not;
@@ -332,6 +337,14 @@ var pomodoro = {
       pomodoro.workSession = false;
     } else {
       pomodoro.workSession = true;
+    }
+
+    // if it's a work session, hide the pomeranian image,
+    // but show it if it's a break session
+    if (pomodoro.workSession === true ) {
+    	pomodoro.hidePup();
+    } else {
+    	pomodoro.showPup();
     }
 
     // stop countdown
@@ -436,6 +449,20 @@ var pomodoro = {
 
   	// change to break session
   	pomodoro.changeSessions();
+
+  },
+
+  showPup: function() {
+
+	// show the pomeranian image
+    pomodoro.pupImage.style.display = "";
+
+  },
+
+  hidePup: function() {
+
+	// hide the pomeranian image
+    pomodoro.pupImage.style.display = "none";
 
   },
 
