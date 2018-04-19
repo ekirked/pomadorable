@@ -281,7 +281,8 @@ var pomodoro = {
       // check if pomodoro has just been unpaused
       if ( pomodoro.timePaused === false ) {
         pomodoro.unPauseCountdown();
-      } else {
+      } else { 
+
       	// take into account saved paused time
         pomodoro.endTime = pomodoro.startTime + pomodoro.pausedTime;
         pomodoro.timePaused = false;
@@ -340,11 +341,25 @@ var pomodoro = {
     }
 
     // if it's a work session, hide the pomeranian image,
-    // but show it if it's a break session
+    // but show it if it's a break session,
+    // and also adjust the buttons
     if (pomodoro.workSession === true ) {
+
     	pomodoro.hidePup();
+
+    	// when not on a break, set the "skip break" button to read "skip to break"
+    	pomodoro.skipPomBtn.innerHTML = "skip to break";
+
     } else {
+
     	pomodoro.showPup();
+
+    	// when on a break, set the "skip to break" button to read "skip break"
+    	pomodoro.skipPomBtn.innerHTML = "skip break";
+
+    	// when on a break, hide the "refresh" button
+    	pomodoro.resetCountdownBtn.style.display = "none";	
+
     }
 
     // stop countdown
@@ -403,6 +418,9 @@ var pomodoro = {
 
     // make sure pomeranian image is hidden
     pomodoro.hidePup();
+
+    // when not on a break, set the "skip break" button to read "skip to break"
+    pomodoro.skipPomBtn.innerHTML = "skip to break";
    
   },
 
@@ -458,7 +476,21 @@ var pomodoro = {
 
   },
 
+
+  // ADD FUNCTIONALITY FOR SHOWING POMERANIAN IMAGE
+
+  shufflePups: function() {
+
+	var images = ["pom-1.jpg", "pom-2.jpg", "pom-3.jpg", "pom-4.jpg", "pom-5.jpg", "pom-6.jpg", "pom-7.jpg", "pom-8.jpg", "pom-9.jpg", "pom-10.jpg", "pom-11.jpg", "pom-12.jpg", "pom-13.jpg", "pom-14.jpg", "pom-15.jpg", "pom-16.jpg", "pom-17.jpg", "pom-18.jpg", "pom-19.jpg", "pom-20.jpg", "pom-21.jpg", "pom-22.jpg", "pom-23.jpg", "pom-24.jpg", "pom-25.jpg", "pom-26.jpg"];
+
+	return images[Math.floor(Math.random() * images.length)];
+
+  },
+
   showPup: function() {
+
+  	// get random pomeranian image from folder
+  	pomodoro.pupImage.src = "css/images/" + pomodoro.shufflePups();
 
 	// show the pomeranian image
     pomodoro.pupImage.style.display = "";
@@ -471,6 +503,9 @@ var pomodoro = {
     pomodoro.pupImage.style.display = "none";
 
   },
+
+
+  // OTHER ELEMENTS
 
   playSound: function() {
 
@@ -498,6 +533,8 @@ var pomodoro = {
 
   }
 };
+
+
 
 // initialise on page load
 pomodoro.init();
