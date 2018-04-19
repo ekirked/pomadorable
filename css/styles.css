@@ -1,3 +1,5 @@
+/*
+
 html {
     box-sizing: border-box;
 }
@@ -12,11 +14,10 @@ html,
 body {
     width: 100%;
     height: 100%;
-    margin: 0;
+    margin: 50px;
     padding: 0;
 }
 
-/*
 .container {
     display: flex;
     justify-content: center;
@@ -24,6 +25,28 @@ body {
     flex-direction: column;
 }
 */
+
+:root {
+  --grey: #343436;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma,
+    Sans-Serif;
+  font-weight: normal;
+  color: #272727;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
 
 .container {
 	display: grid;

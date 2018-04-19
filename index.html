@@ -22,11 +22,24 @@
       		</button>
       		<ul id="settings-list">
         		<li>
-          			<a href="">Set work session length</a>
+					<div class="toggle-button-container" id="pomlength-container">
+		      			<header>work session length</header>
+		      			<time id="pom-length"></time>
+		      			<div class="toggle-button-container__sub-container"></div>
+		      			<button class="toggle-timer" type="button" id="decrease-pom">-</button>
+		        		<button class="toggle-timer" type="button" id="increase-pom">+</button>
+		    		</div>
         		</li>
         		<li>
-          			<a href="">Set short break length</a>
+		    		<div class="toggle-button-container" id="breaklength-container">
+		      			<header>break length</header>
+		      			<time id="break-length"></time>
+		      			<div class="toggle-button-container__sub-container"></div>
+		        		<button class="toggle-timer" type="button" id="decrease-break">-</button>
+		        		<button class="toggle-timer" type="button" id="increase-break">+</button>
+      				</div>
         		</li>
+        		<!-- ADD MORE FUNCTIONALITY LATER
         		<li>
           			<a href="">Set long break length</a>
         		</li>
@@ -36,32 +49,13 @@
         		<li>
           			<a href="">Sounds and images</a>
         		</li>
+        		-->
       		</ul>
     	</nav>
 
 		<header>
 			<h1>Pomadorable</h1>
 		</header>
-
-		<div class="container">
-
-			<div class="toggle-button-container" id="pomlength-container">
-      			<header>work session length</header>
-      			<time id="pom-length"></time>
-      			<div class="toggle-button-container__sub-container"></div>
-      			<button class="toggle-timer" type="button" id="decrease-pom">-</button>
-        		<button class="toggle-timer" type="button" id="increase-pom">+</button>
-    		</div>
-    
-    		<div class="toggle-button-container" id="breaklength-container">
-      			<header>break length</header>
-      			<time id="break-length"></time>
-      			<div class="toggle-button-container__sub-container"></div>
-        		<button class="toggle-timer" type="button" id="decrease-break">-</button>
-        		<button class="toggle-timer" type="button" id="increase-break">+</button>
-      		</div>
-    
-    	</div>
 
     	<div id="countdown-container">
       		<header id="type">work session</header>
