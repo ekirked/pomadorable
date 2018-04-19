@@ -26,34 +26,100 @@ body {
 }
 */
 
+@import url("https://use.typekit.net/zhf7yyd.css");
+
+
 :root {
-  --grey: #343436;
+  --yellow: #ffd132;
+  --black: #272727;
+  --grey: #7d7d7d;
 }
 
+
+/* LAYOUT */
+
 html {
-  box-sizing: border-box;
-  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma,
-    Sans-Serif;
-  font-weight: normal;
-  color: #272727;
+  	box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  	box-sizing: inherit;
 }
 
 body {
-  margin: 0;
+	min-height: calc(100vh - 100px);
+  	margin: 50px;
 }
 
 .container {
 	display: grid;
   	grid-gap: 20px;
+  	grid:
+  		"upper"
+  		"main";
 }
 
-/* Navigation */
+.top {
+	grid-area: upper;
+	display: grid;
+	grid-gap: 20px;
+	grid:
+		"header settings"
+		/ 2fr 1fr;
+}
+
+.header {
+	grid-area: header;
+	padding: 20px;
+}
+
+.main {
+	grid-area: main;
+	display: grid;
+	padding: 20px;
+	align-self: center;
+	justify-content: center;
+	grid:
+		" . cdwn-container . "
+		" . btn-container  . "
+		" . pup-container  . "
+		/ 1fr 3fr 1fr;
+}
+
+.button {
+	padding: 20px;
+}
+
+#countdown-container {
+	grid-area: cdwn-container;
+	justify-self: center;
+}
+
+#button-container {
+	grid-area: btn-container;
+	justify-self: center;
+}
+
+#pup-container {
+	grid-area: pup-container;
+	justify-self: center;
+}
+
+#pup-image {
+	margin: 30px;
+	max-width: 350px;
+	height: auto;
+}
+
+/* Settings drawer */
+
+.settings {
+	grid-area: settings;
+    perspective: 800px;
+    justify-self: end;
+}
 
 .settings ul {
 	display: grid;
@@ -61,6 +127,10 @@ body {
 	padding: 0;
 	list-style: none;
 	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	max-height: 0;
+    overflow: hidden;
+    transform: rotateX(90deg);
+    transition: all 0.5s;
 }
 
 .settings a {
@@ -74,26 +144,9 @@ body {
 	font-size: 20px;
 }
 
-[aria-controls="menu-list"] {
-	display: none;
-}
-
-
-.settings {
-	order: -1;
-    perspective: 800px;
-}
-
 [aria-controls="settings-list"] {
     display: block;
     margin-bottom: 10px;
-}
-
-.settings ul {
-    max-height: 0;
-    overflow: hidden;
-    transform: rotateX(90deg);
-    transition: all 0.5s;
 }
 
 [aria-expanded="true"] ~ ul {
@@ -113,4 +166,75 @@ body {
 [aria-expanded="true"] .open {
     display: none;
 }
+
+
+
+
+/* TYPOGRAPHY */
+
+html {
+  	font-family: brandon-grotesque, sans-serif;
+  	font-weight: 200;
+  	font-size: 15px;
+  	color: var(--black);
+}
+
+h1 {
+  	font-family: merriweather;
+  	font-weight: 900;
+    letter-spacing: 1px;
+}
+
+h2 {
+  	font-family: brandon-grotesque, sans-serif;
+  	font-size: 15px;
+  	font-weight: 400;
+}
+
+p {
+  	margin-top: 10px;
+}
+
+button {
+  	font-family: brandon-grotesque, sans-serif;
+  	font-weight: 200;
+  	font-size: 15px;
+  	color: var(--black);	
+}
+
+a {
+  	color: var(--black);
+  	text-decoration: none;
+}
+
+a:hover {
+  	text-decoration: underline;
+}
+
+#countdown {
+	font-size: 96px;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 550px) {
+
+	h1 {
+		font-size: 15px;
+	}
+
+	#countdown {
+		font-size: 60px;
+	}
+
+	#pup-image {
+		margin: 10px;
+		max-width: 200px;
+		height: auto;
+	}
+
+}
+
+
 

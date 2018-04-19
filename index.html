@@ -14,65 +14,75 @@
 
 	<div class="container">
 
-		<nav class="settings">
-      		<button aria-expanded="false" aria-controls="settings-list">
-        		<span class="open">☰</span>
-        		<span class="close">×</span>
-        		Settings
-      		</button>
-      		<ul id="settings-list">
-        		<li>
-					<div class="toggle-button-container" id="pomlength-container">
-		      			<header>work session length</header>
-		      			<time id="pom-length"></time>
-		      			<div class="toggle-button-container__sub-container"></div>
-		      			<button class="toggle-timer" type="button" id="decrease-pom">-</button>
-		        		<button class="toggle-timer" type="button" id="increase-pom">+</button>
-		    		</div>
-        		</li>
-        		<li>
-		    		<div class="toggle-button-container" id="breaklength-container">
-		      			<header>break length</header>
-		      			<time id="break-length"></time>
-		      			<div class="toggle-button-container__sub-container"></div>
-		        		<button class="toggle-timer" type="button" id="decrease-break">-</button>
-		        		<button class="toggle-timer" type="button" id="increase-break">+</button>
-      				</div>
-        		</li>
-        		<!-- ADD MORE FUNCTIONALITY LATER
-        		<li>
-          			<a href="">Set long break length</a>
-        		</li>
-        		<li>
-          			<a href="">Set pattern</a>
-        		</li>
-        		<li>
-          			<a href="">Sounds and images</a>
-        		</li>
-        		-->
-      		</ul>
-    	</nav>
+		<div class="top">
 
-		<header>
-			<h1>Pomadorable</h1>
-		</header>
+			<header>
+				<h1>Pomadorable</h1>
+			</header>
 
-    	<div id="countdown-container">
-      		<header id="type">work session</header>
-      		<time id="countdown"></time>
-    	</div>
-    
-    	<div id="button-container">
-      		<button type="button" tabindex="0" id="start-pom">get to work</button>
-      		<button type="button" tabindex="1" id="refresh-pom">refresh</button>
-      		<button type="button" tabindex="2" id="stop-pom">stop</button>
-      		<button type="button" tabindex="3" id="skip-pom">skip to break</button>
-      		
+			<nav class="settings">
+	      		<button aria-expanded="false" aria-controls="settings-list">
+	        		<span class="open">☰</span>
+	        		<span class="close">×</span>
+	        		settings
+	      		</button>
+	      		<ul id="settings-list">
+	        		<li>
+						<div class="toggle-button-container" id="pomlength-container">
+			      			<h2>work session length</h2>
+			      			<p><time id="pom-length"></time> min</p>
+			      			<div class="toggle-button-container__sub-container"></div>
+			      			<button class="toggle-timer" type="button" id="decrease-pom">-</button>
+			        		<button class="toggle-timer" type="button" id="increase-pom">+</button>
+			    		</div>
+	        		</li>
+	        		<li>
+			    		<div class="toggle-button-container" id="breaklength-container">
+			      			<h2>break length</h2>
+			      			<p><time id="break-length"></time> min</p>
+			      			<div class="toggle-button-container__sub-container"></div>
+			        		<button class="toggle-timer" type="button" id="decrease-break">-</button>
+			        		<button class="toggle-timer" type="button" id="increase-break">+</button>
+	      				</div>
+	        		</li>
+
+	        		<!-- ADD MORE FUNCTIONALITY HERE LATER
+	        		<li>
+	          			<a href="">Set long break length</a>
+	        		</li>
+	        		<li>
+	          			<a href="">Set pattern</a>
+	        		</li>
+	        		<li>
+	          			<a href="">Sounds and images</a>
+	        		</li>
+	        		-->
+
+	      		</ul>
+	    	</nav>
+
     	</div>
 
-    	<div id="pup-container">
-    		<img id="pup-image" src="css/images/pom-1.jpg">
-    	</div>
+		<div class="main">
+			
+	    	<div id="countdown-container">
+	      		<header id="type">work session</header>
+	      		<time id="countdown"></time>
+	    	</div>
+	    
+	    	<div id="button-container">
+	      		<button type="button" tabindex="0" id="start-pom">get to work</button>
+	      		<button type="button" tabindex="1" id="refresh-pom">refresh</button>
+	      		<button type="button" tabindex="2" id="stop-pom">stop</button>
+	      		<button type="button" tabindex="3" id="skip-pom">skip to break</button>
+	      		
+	    	</div>
+
+	    	<div id="pup-container">
+	    		<img id="pup-image" src="css/images/pom-1.jpg">
+	    	</div>
+
+	    </div>
 
   	</div>
 			
