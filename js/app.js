@@ -144,8 +144,8 @@ var pomodoro = {
   timerVariables: function() {
 
     // set default Length values (in minutes)
-    this.pomLength =  1;
-    this.breakLength   =  1;   
+    this.pomLength =  25;
+    this.breakLength   =  5;   
 
     // define the variable that includes the setinterval method;
     // if the clock is counting down, the value will be true, and 
