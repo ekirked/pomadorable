@@ -441,8 +441,8 @@ var pomodoro = {
 
     pomodoro.unDisableButtons();
 
-    // when timer is stopped, set start button to read "start" again
-    pomodoro.startCountdownBtn.innerHTML = "start";
+    // when timer is stopped, set start button to read "get to work" again
+    pomodoro.startCountdownBtn.innerHTML = "get to work";
 
 	// when timer is stopped, hide the "stop" button
     pomodoro.stopCountdownBtn.style.display = "none";

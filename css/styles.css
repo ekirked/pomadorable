@@ -16,9 +16,78 @@ body {
     padding: 0;
 }
 
+/*
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+*/
+
+.container {
+	display: grid;
+  	grid-gap: 20px;
+}
+
+/* Navigation */
+
+.settings ul {
+	display: grid;
+	grid-gap: 10px;
+	padding: 0;
+	list-style: none;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.settings a {
+	background: var(--yellow);
+	display: block;
+	text-decoration: none;
+	padding: 10px;
+	text-align: center;
+	color: var(--black);
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+[aria-controls="menu-list"] {
+	display: none;
+}
+
+
+.settings {
+	order: -1;
+    perspective: 800px;
+}
+
+[aria-controls="settings-list"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.settings ul {
+    max-height: 0;
+    overflow: hidden;
+    transform: rotateX(90deg);
+    transition: all 0.5s;
+}
+
+[aria-expanded="true"] ~ ul {
+    display: grid;
+    max-height: 500px;
+    transform: rotateX(0);
+}
+
+[aria-expanded="false"] .close {
+    display: none;
+}
+
+[aria-expanded="true"] .close {
+    display: inline-block;
+}
+
+[aria-expanded="true"] .open {
+    display: none;
+}
+
