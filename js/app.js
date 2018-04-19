@@ -340,6 +340,12 @@ var pomodoro = {
       pomodoro.workSession = true;
     }
 
+    // stop countdown
+    pomodoro.timeinterval = false;
+
+    // restart, with workSession changed
+    pomodoro.startCountdown();
+
     // if it's a work session, hide the pomeranian image,
     // but show it if it's a break session,
     // and also adjust the buttons
@@ -361,12 +367,6 @@ var pomodoro = {
     	pomodoro.resetCountdownBtn.style.display = "none";	
 
     }
-
-    // stop countdown
-    pomodoro.timeinterval = false;
-
-    // restart, with workSession changed
-    pomodoro.startCountdown();
 
   },
 
