@@ -55,10 +55,14 @@ body {
 
 .container {
 	display: grid;
+	min-height: calc(100vh - 100px);
   	grid-gap: 20px;
   	grid:
   		"upper"
-  		"main";
+  		"main"
+  		"lower";
+  	grid-template-columns:1fr;
+  	grid-template-rows: 100px 1fr 80px;
 }
 
 .top {
@@ -101,11 +105,32 @@ button:hover {
 #countdown-container {
 	grid-area: cdwn-container;
 	justify-self: center;
+	justify-content: center;
 }
 
 #button-container {
 	grid-area: btn-container;
 	justify-self: center;
+	display: grid;
+	align-content: center;
+	grid:
+		"st-pom rfsh-pom sp-pom skp-pom";
+}
+
+#start-pom {
+	grid-area: st-pom;
+}
+
+#refresh-pom {
+	grid-area: rfsh-pom;
+}
+
+#stop-pom {
+	grid-area: sp-pom;
+}
+
+#skip-pom {
+	grid-area: skp-pom;
 }
 
 #pup-container {
@@ -118,6 +143,20 @@ button:hover {
 	max-width: 350px;
 	height: auto;
 }
+
+.bottom {
+	display: grid;
+	grid-area: lower;
+	justify-self: center;
+	justify-content: center;
+	text-align: center;
+	align-self: bottom;
+}
+
+.bottom p {
+	color: var(--grey);
+}
+
 
 /* Settings drawer */
 
@@ -209,12 +248,13 @@ button {
 }
 
 a {
-  	color: var(--black);
+  	color: var(--grey);
   	text-decoration: none;
 }
 
 a:hover {
   	text-decoration: underline;
+  	color: var(--black);
 }
 
 #countdown {
@@ -224,14 +264,57 @@ a:hover {
 
 /* RESPONSIVE DESIGN */
 
+@media (max-width: 800px) {
+
+	#button-container {
+		grid-area: btn-container;
+		justify-self: center;
+		display: grid;
+		align-content: center;
+		grid:
+			"st-pom rfsh-pom"
+			"sp-pom skp-pom";
+	}
+
+}
+
+
 @media (max-width: 550px) {
+
+	.container {
+		display: grid;
+		min-height: calc(100vh - 100px);
+	  	grid-gap: 20px;
+	  	grid:
+	  		"upper"
+	  		"main"
+	  		"lower";
+	}
 
 	h1 {
 		font-size: 15px;
 	}
 
+	button {
+		margin: 5px;
+		padding: 3px 5px 3px;
+		border-radius: 8px;
+	}
+
 	#countdown {
 		font-size: 60px;
+	}
+
+	#button-container {
+		grid-area: btn-container;
+		justify-self: center;
+		display: grid;
+		align-content: center;
+		grid:
+			"st-pom" 
+			"rfsh-pom"
+			"sp-pom" 
+			"skp-pom";
 	}
 
 	#pup-image {
