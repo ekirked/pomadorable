@@ -5,3 +5,7 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
+serving_static
+node_modules
+package.json
+package-lock.json
