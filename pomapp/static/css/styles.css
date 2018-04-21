@@ -1,0 +1,329 @@
+/*
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 50px;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+*/
+
+@import url("https://use.typekit.net/zhf7yyd.css");
+
+
+:root {
+  --yellow: #ffd132;
+  --black: #272727;
+  --grey: #7d7d7d;
+}
+
+
+/* LAYOUT */
+
+html {
+  	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  	box-sizing: inherit;
+}
+
+body {
+	min-height: calc(100vh - 100px);
+  	margin: 50px;
+}
+
+.container {
+	display: grid;
+	min-height: calc(100vh - 100px);
+  	grid-gap: 20px;
+  	grid:
+  		"upper"
+  		"main"
+  		"lower";
+  	grid-template-columns:1fr;
+  	grid-template-rows: 100px 1fr 80px;
+}
+
+.top {
+	grid-area: upper;
+	display: grid;
+	grid-gap: 20px;
+	grid:
+		"header settings"
+		/ 2fr 1fr;
+}
+
+.header {
+	grid-area: header;
+	padding: 20px;
+}
+
+.main {
+	grid-area: main;
+	display: grid;
+	padding: 20px;
+	align-self: center;
+	justify-content: center;
+	grid:
+		" . cdwn-container . "
+		" . btn-container  . "
+		" . pup-container  . "
+		/ 1fr 3fr 1fr;
+}
+
+button {
+	margin: 10px;
+	padding: 5px 10px 5px;
+	border-radius: 10px;
+}
+
+button:hover {
+	background: var(--yellow);
+}
+
+#countdown-container {
+	grid-area: cdwn-container;
+	justify-self: center;
+	justify-content: center;
+}
+
+#button-container {
+	grid-area: btn-container;
+	justify-self: center;
+	display: grid;
+	align-content: center;
+	grid:
+		"st-pom rfsh-pom sp-pom skp-pom";
+}
+
+#start-pom {
+	grid-area: st-pom;
+}
+
+#refresh-pom {
+	grid-area: rfsh-pom;
+}
+
+#stop-pom {
+	grid-area: sp-pom;
+}
+
+#skip-pom {
+	grid-area: skp-pom;
+}
+
+#pup-container {
+	grid-area: pup-container;
+	justify-self: center;
+}
+
+#pup-image {
+	margin: 30px;
+	max-width: 350px;
+	height: auto;
+}
+
+.bottom {
+	display: grid;
+	grid-area: lower;
+	justify-self: center;
+	justify-content: center;
+	text-align: center;
+	align-self: bottom;
+}
+
+.bottom p {
+	color: var(--grey);
+}
+
+
+/* Settings drawer */
+
+.settings {
+	grid-area: settings;
+    perspective: 800px;
+    justify-self: end;
+}
+
+.settings ul {
+	display: grid;
+	grid-gap: 10px;
+	padding: 0;
+	list-style: none;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	max-height: 0;
+    overflow: hidden;
+    transform: rotateX(90deg);
+    transition: all 0.5s;
+}
+
+.settings a {
+	background: var(--yellow);
+	display: block;
+	text-decoration: none;
+	padding: 10px;
+	text-align: center;
+	color: var(--black);
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+[aria-controls="settings-list"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+[aria-expanded="true"] ~ ul {
+    display: grid;
+    max-height: 500px;
+    transform: rotateX(0);
+}
+
+[aria-expanded="false"] .close {
+    display: none;
+}
+
+[aria-expanded="true"] .close {
+    display: inline-block;
+}
+
+[aria-expanded="true"] .open {
+    display: none;
+}
+
+
+
+
+/* TYPOGRAPHY */
+
+html {
+  	font-family: brandon-grotesque, sans-serif;
+  	font-weight: 200;
+  	font-size: 15px;
+  	color: var(--black);
+}
+
+h1 {
+  	font-family: merriweather;
+  	font-weight: 900;
+    letter-spacing: 1px;
+}
+
+h2 {
+  	font-family: brandon-grotesque, sans-serif;
+  	font-size: 15px;
+  	font-weight: 400;
+}
+
+p {
+  	margin-top: 10px;
+}
+
+button {
+  	font-family: brandon-grotesque, sans-serif;
+  	font-weight: 200;
+  	font-size: 15px;
+  	color: var(--black);	
+}
+
+a {
+  	color: var(--grey);
+  	text-decoration: none;
+}
+
+a:hover {
+  	text-decoration: underline;
+  	color: var(--black);
+}
+
+#countdown {
+	font-size: 96px;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 800px) {
+
+	#button-container {
+		grid-area: btn-container;
+		justify-self: center;
+		display: grid;
+		align-content: center;
+		grid:
+			"st-pom rfsh-pom"
+			"sp-pom skp-pom";
+	}
+
+}
+
+
+@media (max-width: 550px) {
+
+	.container {
+		display: grid;
+		min-height: calc(100vh - 100px);
+	  	grid-gap: 20px;
+	  	grid:
+	  		"upper"
+	  		"main"
+	  		"lower";
+	}
+
+	h1 {
+		font-size: 15px;
+	}
+
+	button {
+		margin: 5px;
+		padding: 3px 5px 3px;
+		border-radius: 8px;
+	}
+
+	#countdown {
+		font-size: 60px;
+	}
+
+	#button-container {
+		grid-area: btn-container;
+		justify-self: center;
+		display: grid;
+		align-content: center;
+		grid:
+			"st-pom" 
+			"rfsh-pom"
+			"sp-pom" 
+			"skp-pom";
+	}
+
+	#pup-image {
+		margin: 10px;
+		max-width: 200px;
+		height: auto;
+	}
+
+}
+
+
+

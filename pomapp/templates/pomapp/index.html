@@ -1,0 +1,149 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Pomadorable</title>
+	<meta name="description" content="A productivity timer offering a modern implementation of Francesco Cirillo's classic Pomodoro method.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div class="top">
+
+			<header>
+				<h1>Pomadorable</h1>
+			</header>
+
+			<nav class="settings">
+	      		<button aria-expanded="false" aria-controls="settings-list">
+	        		<span class="open">☰</span>
+	        		<span class="close">×</span>
+	        		settings
+	      		</button>
+	      		<ul id="settings-list">
+	        		<li>
+						<div class="toggle-button-container" id="pomlength-container">
+			      			<h2>work session length</h2>
+			      			<p><time id="pom-length"></time> min</p>
+			      			<div class="toggle-button-container__sub-container"></div>
+			      			<button class="toggle-timer" type="button" id="decrease-pom">-</button>
+			        		<button class="toggle-timer" type="button" id="increase-pom">+</button>
+			    		</div>
+	        		</li>
+	        		<li>
+			    		<div class="toggle-button-container" id="breaklength-container">
+			      			<h2>break length</h2>
+			      			<p><time id="break-length"></time> min</p>
+			      			<div class="toggle-button-container__sub-container"></div>
+			        		<button class="toggle-timer" type="button" id="decrease-break">-</button>
+			        		<button class="toggle-timer" type="button" id="increase-break">+</button>
+	      				</div>
+	        		</li>
+
+	        		<!-- ADD MORE FUNCTIONALITY HERE LATER
+	        		<li>
+	          			<a href="">Set long break length</a>
+	        		</li>
+	        		<li>
+	          			<a href="">Set pattern</a>
+	        		</li>
+	        		<li>
+	          			<a href="">Sounds and images</a>
+	        		</li>
+	        		-->
+
+	      		</ul>
+	    	</nav>
+
+    	</div>
+
+		<div class="main">
+			
+	    	<div id="countdown-container">
+	      		<header id="type">work session</header>
+	      		<time id="countdown"></time>
+	    	</div>
+	    
+	    	<div id="button-container">
+	      		<button type="button" tabindex="0" id="start-pom">get to work</button>
+	      		<button type="button" tabindex="1" id="refresh-pom">refresh</button>
+	      		<button type="button" tabindex="2" id="stop-pom">stop</button>
+	      		<button type="button" tabindex="3" id="skip-pom">skip to break</button>
+	      		
+	    	</div>
+
+	    	<div id="pup-container">
+	    		<img id="pup-image" src="../static/css/images/pom-1.jpg">
+	    	</div>
+
+	    </div>
+
+	  	<div class="bottom">
+
+	  		<footer>
+
+				<p>&copy; 2018 <a href="https://github.com/ekirked">ekirked</a> | based on the <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">pomodoro time management technique</a> pioneered by <a href="https://francescocirillo.com/">Francesco Cirillo</a></p>
+
+	  			<p><a href="ekirkegaard.com">who made this?</a></p>
+
+	  		</footer>
+
+	  	</div>
+			
+  	</div>
+
+			<!--
+			<section class="clock-display">
+				
+				<span class="start">
+					<i class="fa fa-hourglass"></i>
+				</span>
+
+				<h1>Countdown Clock</h1>
+				<div id="clockdiv">
+				  	<div>
+				    	<span class="days"></span>
+				    	<div class="smalltext">Days</div>
+				  	</div>
+				  	<div>
+				    	<span class="hours"></span>
+				    	<div class="smalltext">Hours</div>
+				  	</div>
+				  	<div>
+				    	<span class="minutes"></span>
+				    	<div class="smalltext">Minutes</div>
+				  	</div>
+				  	<div>
+				   		<span class="seconds"></span>
+				    	<div class="smalltext">Seconds</div>
+				  	</div>
+				</div>
+
+	            <span class="restart">
+	        		<i class="fa fa-repeat"></i>
+	        	</span>
+
+			</section>
+
+			
+			<section class="stats">
+
+				<p>You've completed XX pomodoros, or <span class="days"></span> days, <span class="hours"></span> hours, and <span class="minutes"></span> minutes of concentration.</p>
+
+			</section>
+			-->
+
+	</div>
+
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/animate.js' %}"></script>
+
+</body>
+</html>
